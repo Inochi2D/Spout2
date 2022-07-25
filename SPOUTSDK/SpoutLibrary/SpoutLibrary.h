@@ -427,6 +427,64 @@ typedef SPOUTLIBRARY* SPOUTHANDLE;
 // Factory function that creates an instance of the SPOUT object.
 extern "C" SPOUTAPI SPOUTHANDLE WINAPI GetSpout(VOID);
 
+// Actual C API
+extern "C" {
+	SPOUTAPI void WINAPI spSetSenderName(SPOUTLIBRARY* self, const char* sendername) {
+		self->SetSenderName(sendername);
+	}
+
+	SPOUTAPI void WINAPI spSetSenderFormat(SPOUTLIBRARY* self, DWORD dwFormat) {
+		self->SetSenderFormat(dwFormat);
+	}
+
+	SPOUTAPI void WINAPI spReleaseSender(SPOUTLIBRARY* self, DWORD dwMsec) {
+		self->ReleaseSender(dwMsec);
+	}
+
+	SPOUTAPI bool WINAPI spSendFbo(SPOUTLIBRARY* self, GLuint FboID, unsigned int width, unsigned int height, bool bInvert) {
+		return self->SendFbo(FboID, width, height, bInvert);
+	}
+
+	SPOUTAPI bool WINAPI spSendTexture(SPOUTLIBRARY* self, GLuint TextureID, GLuint TextureTarget, unsigned int width, unsigned int height, bool bInvert, GLuint HostFBO) {
+		return self->SendTexture(TextureID, TextureTarget, width, height, bInvert, HostFBO);
+	}
+
+	SPOUTAPI bool WINAPI spSendImage(SPOUTLIBRARY* self, const unsigned char* pixels, unsigned int width, unsigned int height, GLenum glFormat = GL_RGBA, bool bInvert = false) {
+		return self->SendImage(pixels, width, height, glFormat, bInvert);
+	}
+
+	SPOUTAPI const char* WINAPI spGetName(SPOUTLIBRARY* self) {
+		return self->GetName();
+	}
+
+	SPOUTAPI unsigned int WINAPI spGetWidth(SPOUTLIBRARY* self) {
+		return self->GetWidth();
+	}
+
+	SPOUTAPI unsigned int WINAPI spGetHeight(SPOUTLIBRARY * self) {
+		return self->GetHeight();
+	}
+
+	SPOUTAPI double WINAPI spGetFps(SPOUTLIBRARY * self) {
+		return self->GetFps();
+	}
+
+	SPOUTAPI long WINAPI spGetFrame(SPOUTLIBRARY * self) {
+		return self->GetFrame();
+	}
+
+	SPOUTAPI HANDLE WINAPI spGetHandle(SPOUTLIBRARY * self) {
+		return self->GetHandle();
+	}
+
+	SPOUTAPI bool WINAPI spGetCPU(SPOUTLIBRARY * self) {
+		return self->GetCPU();
+	}
+
+	SPOUTAPI bool WINAPI spGetGLDX(SPOUTLIBRARY * self) {
+		return self->GetGLDX();
+	}
+}
 
 #endif
 ////////////////////////////////////////////////////////////////////////////////
