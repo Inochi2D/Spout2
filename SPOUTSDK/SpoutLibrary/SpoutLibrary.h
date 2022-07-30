@@ -484,6 +484,30 @@ extern "C" {
 	SPOUTAPI bool WINAPI spGetGLDX(SPOUTLIBRARY * self) {
 		return self->GetGLDX();
 	}
+
+	SPOUTAPI int WINAPI spGetSenderCount(SPOUTLIBRARY * self) {
+		return self->GetSenderCount();
+	}
+
+	SPOUTAPI bool WINAPI spGetSender(SPOUTLIBRARY * self, int index, char* sendername, int MaxSize = 256) {
+		return self->GetSender(index, sendername, MaxSize);
+	}
+
+	SPOUTAPI bool WINAPI spFindSenderName(SPOUTLIBRARY* self, char* sendername) {
+		return self->FindSenderName(sendername);
+	}
+
+	SPOUTAPI bool WINAPI spGetSenderInfo(SPOUTLIBRARY* self, const char* sendername, unsigned int& width, unsigned int& height, HANDLE& dxShareHandle, DWORD& dwFormat) {
+		return self->GetSenderInfo(sendername, width, height, dxShareHandle, dwFormat);
+	}
+
+	SPOUTAPI bool WINAPI spGetActiveSender(SPOUTLIBRARY* self, char* sendername) {
+		return self->GetActiveSender(sendername);
+	}
+
+	SPOUTAPI bool WINAPI spSetActiveSender(SPOUTLIBRARY* self, char* sendername) {
+		return self->SetActiveSender(sendername);
+	}
 }
 
 #endif
